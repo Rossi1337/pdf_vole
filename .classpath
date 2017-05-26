@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/iText-2.1.4.jar" sourcepath="/home/rossi/data/workspace/iText_2_1_3/src/core"/>
+	<classpathentry kind="lib" path="lib/jxlayer.jar"/>
+	<classpathentry kind="lib" path="lib/AppFramework-beta_3.jar" sourcepath="lib/AppFramework-beta_3-src.zip"/>
+	<classpathentry kind="con" path="VS_LAYOUT"/>
+	<classpathentry kind="lib" path="lib/bcmail-jdk16-141.jar"/>
+	<classpathentry kind="lib" path="lib/bcprov-jdk16-141.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
