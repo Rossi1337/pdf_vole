@@ -65,7 +65,8 @@
 					<include name="*.jar" />
 				</fileset>
 				<fileset dir="">
-					<include name="*.txt" />
+					<include name="README.md" />
+					<include name="LICENSE" />
 				</fileset>
 			</zip>
 		</target>
