@@ -18,7 +18,7 @@ public class ResourceManager {
 	
 	// Some constants
 	private static final String HOMEPAGE_URL = "https://github.com/Rossi1337/pdf_vole"; //$NON-NLS-1$
-	private static final String PDF_OP_DESC = "resources/operator.txt";  //$NON-NLS-1$ 
+	private static final String PDF_OP_DESC = "/com/btr/pdfvole/resources/operator.txt";  //$NON-NLS-1$ 
 
 	private static File lastFile;
 		
