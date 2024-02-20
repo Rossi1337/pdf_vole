@@ -34,7 +34,7 @@ public class InitialViewer extends JPanel implements IStreamViewer {
 		setLayout(new GridBagLayout());
 		setSize(400, 300);
 		
-		JLabel helpMsg = new JLabel();
+		JLabel helpMsg = new JLabel("<- Drop a PDF file into the left window to open it.");
 		helpMsg.setName("helpMsg"); //$NON-NLS-1$
 		helpMsg.setFont(helpMsg.getFont().deriveFont(Font.ITALIC));
 		helpMsg.setHorizontalTextPosition(SwingConstants.LEADING);

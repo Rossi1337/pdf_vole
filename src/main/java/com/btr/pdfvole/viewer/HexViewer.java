@@ -114,7 +114,7 @@ public class HexViewer extends JPanel implements IStreamViewer {
 		add(sp, BorderLayout.CENTER);
 
 		// Build toolbar
-		ApplicationActionMap actions = Application.getContext().getActionMap(this);
+		ApplicationActionMap actions = Application.getInstance().getContext().getActionMap(this);
 
 		JToolBar pTop = new JToolBar();
 		pTop.add(actions.get("export")); //$NON-NLS-1$

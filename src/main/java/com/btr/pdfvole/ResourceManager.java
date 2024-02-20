@@ -29,7 +29,7 @@ public class ResourceManager {
 	 ************************************************************************/
 	
 	public static Icon getIcon(String name) {
-		return Application.getContext().getResourceMap().getIcon(name); 
+		return Application.getInstance().getContext().getResourceMap().getIcon(name);
 	}
 	
 	/*************************************************************************
@@ -40,7 +40,7 @@ public class ResourceManager {
 	 ************************************************************************/
 	
 	public static String getString(String key, Object ...vars) {
-		return 	Application.getContext().getResourceMap().getString(key, vars);
+		return 	Application.getInstance().getContext().getResourceMap().getString(key, vars);
 	}
 	
 	public static URL getOperatorFile() {

@@ -12,21 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.List;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -37,6 +23,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ApplicationActionMap;
+import org.jdesktop.application.FrameView;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.jxlayer.JXLayer;
 
@@ -80,7 +67,23 @@ public class PdfVole extends SingleFrameApplication implements
 		super();
 		Thread.setDefaultUncaughtExceptionHandler(new ExceptionDialog());
 	}
-	
+
+	@Override
+	protected void startup() {
+		var topLevel = getMainTopLevel();
+		configureRootPane(topLevel.getRootPane());
+		configureTopLevel(topLevel);
+		topLevel.setVisible(true);
+	}
+
+	private void configureRootPane(JRootPane rootPane) {
+		JMenuBar menuBar = createJMenuBar();
+		rootPane.setJMenuBar(menuBar);
+
+		Component mainComponent = createMainComponent();
+		rootPane.getContentPane().add(mainComponent);
+	}
+
 	/*************************************************************************
 	 * Main entry point for the application.
 	 * @param args command line arguments.
@@ -93,16 +96,14 @@ public class PdfVole extends SingleFrameApplication implements
 
 	/*************************************************************************
 	 * createJMenuBar
-	 * @see org.jdesktop.application.TopLevelFactory#createJMenuBar()
 	 ************************************************************************/
-	@Override
 	protected JMenuBar createJMenuBar() {
 		ApplicationActionMap actions = getContext().getActionMap();
 
 		
 		// --- Add File Menu ----
 
-		JMenu fileMenu = new JMenu();
+		JMenu fileMenu = new JMenu("File");
 		fileMenu.setName("fileMenu"); //$NON-NLS-1$
 
 		fileMenu.add(actions.get("open")); //$NON-NLS-1$
@@ -110,7 +111,7 @@ public class PdfVole extends SingleFrameApplication implements
 		fileMenu.add(actions.get("quit")); //$NON-NLS-1$
 
 		// --- Add LnF Menu ----
-		JMenu lnfMenu = new JMenu();
+		JMenu lnfMenu = new JMenu("Look & Feel");
 		lnfMenu.setName("lnfMenu"); //$NON-NLS-1$
 		
 		LookAndFeelInfo[] lnf = UIManager.getInstalledLookAndFeels();
@@ -122,7 +123,7 @@ public class PdfVole extends SingleFrameApplication implements
 		}
 
 		// --- About Menu ----
-		JMenu helpMenu = new JMenu();
+		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setName("helpMenu"); //$NON-NLS-1$
 		helpMenu.add(actions.get("about")); //$NON-NLS-1$
 		helpMenu.add(actions.get("visitHomepage")); //$NON-NLS-1$
@@ -137,9 +138,7 @@ public class PdfVole extends SingleFrameApplication implements
 
 	/*************************************************************************
 	 * createMainComponent
-	 * @see org.jdesktop.application.TopLevelFactory#createMainComponent()
 	 ************************************************************************/
-	@Override
 	protected Component createMainComponent() {
 		
 		this.pdfTree = new JTree(new DefaultTreeModel(new DefaultMutableTreeNode()));
@@ -202,13 +201,12 @@ public class PdfVole extends SingleFrameApplication implements
 
 	/*************************************************************************
 	 * configureTopLevel
-	 * @see org.jdesktop.application.SingleFrameApplication#configureTopLevel(javax.swing.JFrame)
 	 ************************************************************************/
-	@Override
 	protected void configureTopLevel(JFrame mainFrame) {
-		mainFrame.setPreferredSize(new Dimension(600, 480));
-
-		super.configureTopLevel(mainFrame);
+		var dim = new Dimension(900, 640);
+		mainFrame.setPreferredSize(dim);
+		mainFrame.setSize(dim);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/*************************************************************************
@@ -416,5 +414,9 @@ public class PdfVole extends SingleFrameApplication implements
 		
 	}
 
-}
+	// Helpers
+	public JFrame getMainTopLevel() {
+		return super.getMainFrame();
+	}
 
+}

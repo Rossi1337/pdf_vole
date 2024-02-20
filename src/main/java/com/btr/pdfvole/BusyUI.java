@@ -18,5 +18,7 @@ public class BusyUI extends LockableUI {
 	public BusyUI() {
 		super();
 	}
-	
+
+	public void setEnabled(boolean value) { setLocked(value); }
+
 }
