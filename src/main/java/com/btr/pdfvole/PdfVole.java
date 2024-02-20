@@ -70,16 +70,18 @@ public class PdfVole extends SingleFrameApplication implements
 
 	@Override
 	protected void startup() {
-		var main = super.getMainFrame();
-		configureTopLevel(main);
+		var topLevel = getMainTopLevel();
+		configureRootPane(topLevel.getRootPane());
+		configureTopLevel(topLevel);
+		topLevel.setVisible(true);
+	}
 
-		var menu = createJMenuBar();
-		main.setJMenuBar(menu);
+	private void configureRootPane(JRootPane rootPane) {
+		JMenuBar menuBar = createJMenuBar();
+		rootPane.setJMenuBar(menuBar);
 
-		var content = createMainComponent();
-		main.getContentPane().add(content);
-
-		main.setVisible(true);
+		Component mainComponent = createMainComponent();
+		rootPane.getContentPane().add(mainComponent);
 	}
 
 	/*************************************************************************
