@@ -103,7 +103,7 @@ public class PdfVole extends SingleFrameApplication implements
 		
 		// --- Add File Menu ----
 
-		JMenu fileMenu = new JMenu();
+		JMenu fileMenu = new JMenu("File");
 		fileMenu.setName("fileMenu"); //$NON-NLS-1$
 
 		fileMenu.add(actions.get("open")); //$NON-NLS-1$
@@ -111,7 +111,7 @@ public class PdfVole extends SingleFrameApplication implements
 		fileMenu.add(actions.get("quit")); //$NON-NLS-1$
 
 		// --- Add LnF Menu ----
-		JMenu lnfMenu = new JMenu();
+		JMenu lnfMenu = new JMenu("Look & Feel");
 		lnfMenu.setName("lnfMenu"); //$NON-NLS-1$
 		
 		LookAndFeelInfo[] lnf = UIManager.getInstalledLookAndFeels();
@@ -123,7 +123,7 @@ public class PdfVole extends SingleFrameApplication implements
 		}
 
 		// --- About Menu ----
-		JMenu helpMenu = new JMenu();
+		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setName("helpMenu"); //$NON-NLS-1$
 		helpMenu.add(actions.get("about")); //$NON-NLS-1$
 		helpMenu.add(actions.get("visitHomepage")); //$NON-NLS-1$
@@ -203,7 +203,7 @@ public class PdfVole extends SingleFrameApplication implements
 	 * configureTopLevel
 	 ************************************************************************/
 	protected void configureTopLevel(JFrame mainFrame) {
-		var dim = new Dimension(600, 480);
+		var dim = new Dimension(900, 640);
 		mainFrame.setPreferredSize(dim);
 		mainFrame.setSize(dim);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
