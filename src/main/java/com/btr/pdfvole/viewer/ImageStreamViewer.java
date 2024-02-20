@@ -103,7 +103,7 @@ public class ImageStreamViewer extends JComponent implements IStreamViewer {
 		
 		add(new JScrollPane(this.imageComponent), BorderLayout.CENTER);
 		
-		ApplicationActionMap actions = Application.getContext().getActionMap(this);
+		ApplicationActionMap actions = Application.getInstance().getContext().getActionMap(this);
 		
 		// Build toolbar.
 		JToolBar pTop = new JToolBar();
